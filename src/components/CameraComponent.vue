@@ -143,7 +143,7 @@ export default {
       const res = await this.$store.dispatch("getWeather");
       await this.$store.dispatch("saveUser", this.$store.state.user);
       if (res) {
-        this.$router.push("/home");
+        this.$router.push("/");
       }
       this.$store.commit("SET_IS_LOADING", false);
     },

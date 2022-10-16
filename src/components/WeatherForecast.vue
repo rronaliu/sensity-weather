@@ -1,7 +1,7 @@
 <template>
   <Spinner v-if="isLoading" />
   <div v-else>
-    <div v-if="weather" class="d-flex flex-wrap mx-5">
+    <div v-if="weather" class="d-flex flex-wrap justify-content-center mx-5">
       <div class="card card-item" v-for="(item, key) in weather" :key="key">
         <div
           class="d-flex align-items-center justify-content-around m-1 border-bottom"

@@ -3,7 +3,7 @@
     <h1>Error 404</h1>
     <h4>Page not found</h4>
     <span
-      >Go back to<span class="link-primary cursor-pointer" @click="goBack"
+      >Go back to <span class="link-primary cursor-pointer " @click="goBack"
         >HomePage</span
       >
     </span>
@@ -13,7 +13,7 @@
 export default {
   methods: {
     goBack() {
-      this.$router.push("/home");
+      this.$router.push("/");
     },
   },
 };
