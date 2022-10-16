@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">Sensity Weather</a>
+      <a class="navbar-brand" href="/sensity-weather/">Sensity Weather</a>
       <button
         v-if="isLogged"
         class="navbar-toggler"
