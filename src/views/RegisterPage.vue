@@ -38,8 +38,9 @@
 
 <script>
 import CameraComponent from "../components/CameraComponent.vue";
-import REGEX_CITY from "../assets/REGEX_CITY.js";
-import REGEX_NAME from "../assets/REGEX_NAME.js";
+import REGEX_CITY from "../constants/REGEX_CITY.js";
+import validateCity from "../utils/validateCity.js";
+import REGEX_NAME from "../constants/REGEX_NAME.js";
 export default {
   components: {
     CameraComponent,
@@ -76,16 +77,16 @@ export default {
     },
   },
   methods: {
-    validateCity() {
-      const testCity = REGEX_CITY.test(this.userCity);
-      if (!testCity) {
-        this.error.city = "Enter a valid City";
-        return false;
-      } else {
-        this.error.city = "";
-      }
-      return true;
-    },
+    // validateCity() {
+    //   const testCity = REGEX_CITY.test(this.userCity);
+    //   if (!testCity) {
+    //     this.error.city = "Enter a valid City";
+    //     return false;
+    //   } else {
+    //     this.error.city = "";
+    //   }
+    //   return true;
+    // },
     validateName() {
       const testName = REGEX_NAME.test(this.userName);
       if (!testName) {
@@ -98,12 +99,19 @@ export default {
     },
     async submitForm(e) {
       e.preventDefault();
-      const validName = await this.validateCity();
-      const validCity = await this.validateName();
+      const validCity = validateCity(this.userCity);
+
+      if(!validCity) {
+        this.error.city = "Enter a valid City";
+      } else {
+        this.error.city = "";
+      }
+
+      const validName = this.validateName();
       if (!validName || !validCity) {
         return;
       }
-      console.log("Form submitted");
+      
       this.$store.commit("SET_FORM_STEP", 2);
     },
   },

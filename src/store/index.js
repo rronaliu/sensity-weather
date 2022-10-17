@@ -66,7 +66,6 @@ const store = createStore({
             `${weatherURL}/geo/1.0/direct?q=${state.user.city}&appid=${weatherAPIKey}`
           )
           .then((response) => {
-            console.log("getWeather response", response, response.data);
             if (response && response.data && response.data.length > 0) {
               let lat = response.data[0].lat;
               let lon = response.data[0].lon;
@@ -86,14 +85,12 @@ const store = createStore({
       });
     },
     getFiveDayForecast({ commit }, data) {
-      console.log("getFiveDayForecast action called", data);
       return new Promise((resolve, reject) => {
         axios
           .get(
             `${weatherURL}/data/2.5/onecall?lat=${data.lat}&lon=${data.lon}&exclude=current,minutely,hourly&appid=${weatherAPIKey}&units=metric`
           )
           .then((response) => {
-            console.log("getFiveDayForecast response", response, response.data);
             if (response && response.data) {
               commit("SET_WEATHER", response.data.daily.slice(0, 5));
               commit("SET_IS_LOGGED", true);
@@ -106,7 +103,6 @@ const store = createStore({
       });
     },
     saveUser({ commit }, data) {
-      console.log("saveUser action called");
       if (data.name && data.city && data.image) {
         commit("SET_USER_OBJECT", data);
         localStorage.setItem("user", JSON.stringify(data));
